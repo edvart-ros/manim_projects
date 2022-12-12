@@ -55,7 +55,7 @@ class NewtonsMethod(Scene):
         #curve
         curve = ax.plot(lambda x: 10*x**3+10*x**2-1, color=RED)
         
-        #draw f(x)
+        #draw f(x) test
         self.play(Create(ax, run_time=1))
         self.wait(1)
         self.play(Create(curve, run_time=3), Write(eq1))
