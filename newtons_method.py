@@ -17,7 +17,7 @@ class NewtonsMethod(Scene):
     def construct(self):
 
 
-        #introduce newtons method
+        #introduce newtons method, display equation
         eq = Tex("\\underline{Newton's Method:}")
         eq.shift(0.9*UP)
         self.play(Write(eq))
@@ -25,9 +25,11 @@ class NewtonsMethod(Scene):
         self.play(Write(eq0))
         self.wait(2)
 
+        #remove text and shift equation to corner
         self.play(Uncreate(eq))
         self.play(eq0.animate.shift(4.5*RIGHT, 3*DOWN), color=BLUE)
 
+        #draw rectangle around equation
         rect1 = Rectangle(width=4.7, height=1.6)
         rect1.shift(4.5*RIGHT, 3*DOWN)
         self.play(Create(rect1))
@@ -45,39 +47,39 @@ class NewtonsMethod(Scene):
         eq1=Tex("$f(x) = 10x^3+10x^2-1$", font_size=35)
         eq1.shift(3*UP, 4*RIGHT)        
 
-        #axes
+        #define axes
         ax = Axes(
             x_range=[-1.6, 1.6, 0.2672],
             y_range=[-0.8, 0.8, 0.2672],
             #axis_config={"include_numbers": True}
             )
         
-        #curve
+        #define f(x) curve
         curve = ax.plot(lambda x: 10*x**3+10*x**2-1, color=RED)
         
-        #draw f(x) test
+        #draw f(x)
         self.play(Create(ax, run_time=1))
         self.wait(1)
         self.play(Create(curve, run_time=3), Write(eq1))
 
-        #first guess
+        #define first guess
         x_0 = -0.1
 
-        #dashed line up to intersection
+        #draw dashed line from first guess up to the function
         eq2 = Tex('$x_0$', font_size=35).move_to(ax.c2p(x_0, 0.1, 0))
         dot_0 = Dot(color=BLUE).move_to(ax.c2p(x_0, 0, 0))
         dashed_0 = DashedLine(ax.c2p(x_0, 0, 0), ax.coords_to_point(x_0, f(x_0), 0), dash_length=0.15, color=BLUE)
         self.play(Create(dot_0), Create(eq2))
         self.play(Create(dashed_0))
 
-        #mark f(x_0)
+        #mark value f(x_0)
         eq3= Tex('$f(x_0)$', font_size=35).shift(1*LEFT, 3.4*DOWN)
         dot_1 = Dot(color=BLUE).move_to(ax.coords_to_point(x_0, f(x_0), 0))
         self.play(Create(dot_1), Create(eq3))
         self.wait(1)
 
 
-        #tangent line
+        #define tangent line
         tangent1 = ax.plot(lambda x: df_dx(x_0)*(x-x_0)+f(x_0), color=BLUE)
 
         #display tangent equation
@@ -120,6 +122,8 @@ class NewtonsMethod(Scene):
         self.play(Create(tangent2, run_time = 1, Reverse=True), Write(eq4))
         self.wait(2)
 
+
+        "herfra og utover begynte jeg å bli litt lei, og ville bare bli ferdig med prosjektet :-)"
 
 
         #mark and repeat guessing
@@ -169,6 +173,7 @@ class NewtonsMethod(Scene):
 
 ################################################
 ################################################
+
         #make dots smaller and remove equation
         #get next root
         x_4 = next_guess(x_3)
