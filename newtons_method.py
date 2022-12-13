@@ -11,12 +11,8 @@ def next_guess(x):
     return x-f(x)/df_dx(x)
 
 
-
-
 class NewtonsMethod(Scene):
     def construct(self):
-
-
         #introduce newtons method, display equation
         eq = Tex("\\underline{Newton's Method:}")
         eq.shift(0.9*UP)
@@ -78,14 +74,12 @@ class NewtonsMethod(Scene):
         self.play(Create(dot_1), Create(eq3))
         self.wait(1)
 
-
         #define tangent line
         tangent1 = ax.plot(lambda x: df_dx(x_0)*(x-x_0)+f(x_0), color=BLUE)
 
         #display tangent equation
         eq4=Tex("$f'(x_0)\cdot (x-x_0)+f(x_0)$", font_size=35)
         eq4.shift(3*UP, 2*LEFT)
-
 
         #draw tangent line
         self.play(Create(tangent1, run_time = 1, Reverse=True), Write(eq4))
@@ -170,7 +164,6 @@ class NewtonsMethod(Scene):
         tangent4 = ax.plot(lambda x: df_dx(x_3)*(x-x_3)+f(x_3), color=BLUE)
         self.play(Create(tangent4), run_time = 1)
 
-
 ################################################
 ################################################
 
@@ -193,7 +186,6 @@ class NewtonsMethod(Scene):
         tangent5 = ax.plot(lambda x: df_dx(x_4)*(x-x_4)+f(x_4), color=BLUE)
         self.play(Create(tangent5), run_time = 1)
 
-
 # ################################################
 # ################################################
 
@@ -211,19 +203,3 @@ class NewtonsMethod(Scene):
         dot_10 = Dot(color=BLUE, radius=0.075).move_to(ax.c2p(x_5, f(x_5), 0))
         self.play(Create(dot_10))
         self.wait(1)
-        #create next tangent
-        #tangent5 = ax.plot(lambda x: df_dx(x_5)*(x-x_5)+f(x_5), color=BLUE)
-        #self.play(Create(tangent5), run_time = 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
